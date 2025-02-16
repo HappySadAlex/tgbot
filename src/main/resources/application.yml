@@ -1,0 +1,18 @@
+spring:
+    application:
+        name: tgbot
+    data:
+        mongodb:
+            uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/tgbotdb} #  подключение к MongoDB берется из переменной окружения
+
+bot:
+    token: ${BOT_TOKEN} #  токен берется из переменной окружения
+    sourceUrl: ${BOT_SOURCE_URL:https://t.me/SNPtechBot?start=} # URL берется из переменной окружения
+    policyUrl: ${BOT_POLICY_URL:https://telegram.org/privacy-tpa} # URL политики берется из переменной окружения
+
+#logging:
+#    level:
+#        org.mongodb.driver.protocol.command: DEBUG
+#        org.mongodb.driver.connection: DEBUG
+#        org.mongodb.driver.cluster: DEBUG
+

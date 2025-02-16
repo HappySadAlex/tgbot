@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "8080:8080"
+        environment:
+            - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/tgbotdb
+            - BOT_TOKEN=${BOT_TOKEN}
+            - BOT_SOURCE_URL=${BOT_SOURCE_URL}
+            - BOT_POLICY_URL=${BOT_POLICY_URL}
+        depends_on:
+            - db
+
+    db:
+        image: mongo:latest
+        container_name: mongodb
+        restart: always
+        ports:
+            - "27017:27017"  # Проброс порта для доступа извне (опционально)
+        volumes:
+            - db_data:/data/db
+
+volumes:
+    db_data:
